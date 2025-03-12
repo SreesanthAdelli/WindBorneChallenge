@@ -51,7 +51,7 @@ class DataFetcher:
             response.raise_for_status()
             data = response.json()
             print(f"Successfully fetched data for {hours_ago}h ago. Found {len(data)} balloons.")
-            print(f"Sample data: {data[:2] if data else 'No data'}")  # Print first two entries
+            print(f"Sample data: {data[:2] if data else 'No data'}")
             return data
         except (requests.RequestException, json.JSONDecodeError) as e:
             print(f"Error fetching data for {hours_ago}h ago: {e}")
@@ -85,13 +85,13 @@ class DataFetcher:
         records = []
         for balloon in raw_data:
             try:
-                if isinstance(balloon, list) and len(balloon) >= 3:  # WindBorne data is in list format [lat, lon, alt]
+                if isinstance(balloon, list) and len(balloon) >= 3:
                     lat, lon, alt = balloon
                     records.append({
-                        'id': f'balloon_{len(records)}',  # Generate sequential balloon IDs
+                        'id': f'balloon_{len(records)}',
                         'latitude': float(lat),
                         'longitude': float(lon),
-                        'altitude': float(alt) * 1000,  # Convert km to meters to match aircraft altitude
+                        'altitude': float(alt) * 1000,  # Convert km to meters
                         'timestamp': timestamp,
                         'type': 'balloon'
                     })
@@ -100,7 +100,7 @@ class DataFetcher:
                         'id': balloon.get('id', f'balloon_{len(records)}'),
                         'latitude': float(balloon['lat']),
                         'longitude': float(balloon['lon']),
-                        'altitude': float(balloon['alt']) * 1000,  # Convert km to meters to match aircraft altitude
+                        'altitude': float(balloon['alt']) * 1000,  # Convert km to meters
                         'timestamp': timestamp,
                         'type': 'balloon'
                     })
