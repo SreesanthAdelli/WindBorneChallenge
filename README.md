@@ -108,9 +108,6 @@ WindBorneChallenge/
 
 Feel free to submit issues, fork the repository, and create pull requests for any improvements.
 
-## License
-
-[Your chosen license]
 
 ## Acknowledgments
 
